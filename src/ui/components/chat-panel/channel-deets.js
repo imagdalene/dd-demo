@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import "./channel.css";
+import "./chat-panel.css";
 
 const defaultUserData = {
   userName: "",

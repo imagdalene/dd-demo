@@ -5,7 +5,7 @@ import ChannelDetails from "./channel-deets";
 import { useParams } from "react-router-dom";
 import * as roomService from "../../service/rooms";
 import { w3cwebsocket } from "websocket";
-import "./channel.css";
+import "./chat-panel.css";
 
 const baseURL = process.env.WSS_PUBLIC_URL || "ws://localhost:8080";
 
@@ -15,7 +15,9 @@ export default function ChatPanel() {
 
   const [messages, setMessages] = useState([]);
   const [channelDetails, setChannelDetails] = useState({});
-  const client = new w3cwebsocket(baseURL + "/rooms/" + roomId);
+  const [client, setClient] = useState(
+    new w3cwebsocket(baseURL + "/rooms/" + roomId)
+  );
 
   useEffect(() => {
     if (currentRoomId !== roomId) {
@@ -35,14 +37,21 @@ export default function ChatPanel() {
         .catch((error) => {
           console.error(error);
         });
-      client.onopen = () => {
+      client.close();
+      const newClient = new w3cwebsocket(baseURL + "/rooms/" + roomId);
+      setClient(newClient);
+      newClient.onopen = () => {
         console.log("Client opened");
       };
+
       setCurrentRoomid(roomId);
     }
+
     client.onmessage = (message) => {
-      console.log("message ", message);
-      setMessages([...messages, JSON.parse(message.data)]);
+      const data = JSON.parse(message.data);
+      if (data.roomId == roomId) {
+        setMessages([...messages, JSON.parse(message.data)]);
+      }
     };
   }, [roomId, messages]);
 

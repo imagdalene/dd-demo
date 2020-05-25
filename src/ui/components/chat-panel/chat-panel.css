@@ -28,6 +28,7 @@
 .message-container {
   background-color: lightgray;
   flex: 1;
+  overflow-y: scroll;
 }
 /* channel chat styles */
 

@@ -2,7 +2,7 @@ var express = require("express");
 const enableWs = require("express-ws");
 
 var app = express();
-enableWs(app);
+const wsInstance = enableWs(app, null, { trackClients: true });
 var bodyParser = require("body-parser");
 
 var shortid = require("shortid");
@@ -151,10 +151,12 @@ router
   });
 
 app.ws("/rooms/:roomId", (ws, req) => {
+  const { roomId } = req.params;
+
   ws.on("message", function (jsonData) {
     console.log(jsonData);
     const data = JSON.parse(jsonData);
-    room = findRoom(req.params.roomId);
+    room = findRoom(roomId);
 
     if (room.error) {
       console.log("Response:", room);
@@ -173,7 +175,11 @@ app.ws("/rooms/:roomId", (ws, req) => {
       };
       room.messages.push(messageObj);
       console.log("Response:", { message: "WS OK!" });
-      ws.send(JSON.stringify(messageObj));
+      Array.from(wsInstance.getWss().clients).forEach((client) => {
+        if (client.readyState === 1) {
+          client.send(JSON.stringify({ ...messageObj, roomId }));
+        }
+      });
     }
   });
 });
