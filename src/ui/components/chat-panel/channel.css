@@ -1,0 +1,108 @@
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+/* channel deets styles */
+.channel-deets {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding-bottom: 15px;
+  border-bottom: 1px solid lightgray;
+}
+
+.userNames {
+  padding: 0 5px;
+}
+
+.userNames.self {
+  color: red;
+}
+
+/* channel deets styles */
+
+/* channel chat styles */
+.message-container {
+  background-color: lightgray;
+  flex: 1;
+}
+/* channel chat styles */
+
+/* message styles */
+.single-message-container {
+  padding: 0 15px;
+  margin-top: 15px;
+  display: flex;
+  flex-direction: row;
+}
+
+.single-message-container.self-authored {
+  justify-content: flex-end;
+}
+
+.message-unit {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+}
+
+.single-message-text {
+  background-color: white;
+  border-radius: 20px;
+
+  margin-top: 10px;
+  margin-bottom: 2px;
+  padding: 15px;
+}
+
+.self-authored.single-message-text {
+  background-color: rgb(252, 21, 67);
+  color: white;
+}
+
+.single-message-author {
+  color: slategray;
+  font-size: 14px;
+}
+
+/* message styles */
+
+/* channel compose styles */
+.channel-compose {
+  width: 100%;
+  height: 70px;
+  display: flex;
+  flex-direction: row;
+}
+
+.compose-input-container {
+  display: flex;
+  align-items: center;
+  padding-left: 30px;
+  flex: 1;
+}
+
+.compose-input {
+  border: none;
+  outline: none;
+  height: 35px;
+  padding-left: 30px;
+  border: 1px solid lightgray;
+  border-radius: 3px;
+  width: 100%;
+}
+
+.compose-button-div {
+  display: flex;
+  align-items: center;
+  padding: 0 30px;
+  cursor: pointer;
+}
+
+.compose-button-div:hover {
+  color: paleturquoise;
+}
+/* channel compose styles */

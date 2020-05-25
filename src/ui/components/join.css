@@ -1,0 +1,36 @@
+.container {
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.joinInput:focus {
+  border: none;
+  outline: none;
+}
+.joinInput {
+  width: 95%;
+}
+
+.inputDiv {
+  border: 1px inset lightslategray;
+}
+
+.joinInput,
+.joinButton {
+  padding: 0.2rem 0.5rem;
+  border: none;
+  height: 35px;
+}
+
+.joinButton {
+  width: 100%;
+  background-color: rgb(252, 21, 67);
+}
+
+.form-element-width {
+  width: 35vw;
+  margin-top: 15px;
+}

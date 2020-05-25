@@ -1,0 +1,33 @@
+/* styles for channel container  */
+.channel-container {
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+  height: 100vh;
+  background-color: rgb(252, 21, 67);
+}
+
+/* common styles for channel link , user display */
+.channel-selector,
+.displayUser {
+  text-decoration: none;
+  width: 100%;
+  padding-left: 15px;
+  padding-top: 15px;
+  color: white;
+}
+
+.linkRow {
+  height: 45px;
+  display: flex;
+  justify-content: center;
+}
+
+.selected-true {
+  background-color: rgb(212, 14, 54);
+}
+
+/* user display styles */
+.displayUser {
+  margin-bottom: 15px;
+}
